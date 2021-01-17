@@ -26,7 +26,7 @@ for item in decrypt_language:
 ```
 import engine
 
-# Create a of ID as key with the translated text as the value.
+# Create a dictionary with ID as key and the translated text as the value.
 my_translation = {
 	"ID1": "This is my translation",
 	"ID2": "This is another translation",
