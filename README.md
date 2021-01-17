@@ -1,6 +1,6 @@
 # Ragnarok Origin Language Decrypter
 
-This was the tool we are using back then when we first released the Ragnarok Origin Language Patcher. Now its a scrapped project and we are happy to share it with anyone.
+This is the tool we are using back then when we first released the Ragnarok Origin Language Patcher. Now its a scrapped project and we are happy to share it with anyone.
 
 ### Usage:
 
