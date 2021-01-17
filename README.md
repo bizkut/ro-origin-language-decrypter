@@ -6,10 +6,10 @@ This was the tool we are using back then when we first released the Ragnarok Ori
 
 #### To decrypt file:
 
-1. Create a `main.py` file together with the `.engine.py` file.
+1. Create a `main.py` file together with the `engine.py` file.
 2. Open `main.py` and put these contents:
 ```
-import engine.py
+import engine
 
 # Decrypt the file
 decrypt_language = database_read("2226754682.robytes");
@@ -21,10 +21,10 @@ for item in decrypt_language:
 
 #### To encrypt file:
 
-1. Create a `main.py` file together with the `.engine.py` file.
+1. Create a `main.py` file together with the `engine.py` file.
 2. Open `main.py` and put these contents:
 ```
-import engine.py
+import engine
 
 # Create a of ID as key with the translated text as the value.
 my_translation = {
