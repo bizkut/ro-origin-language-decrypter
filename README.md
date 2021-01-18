@@ -12,11 +12,14 @@ This is the tool we are using back then when we first released the Ragnarok Orig
 import engine
 
 # Decrypt the file
-decrypt_language = database_read("2226754682.robytes");
+decrypt_language = engine.database_read("2226754682.robytes");
 
 # Read the decrypted data
-for item in decrypt_language:
-   print(item['id'], item['text'])
+with open("dump.tsv", "w", encoding="utf-8") as fh:
+   for item in decrypt_language:
+        id = item['_id_']
+        name = item['text'].replace("\n","\\n")
+        fh.write(f"{id}\t{name}\t\n")
 ```
 
 #### To encrypt file:
