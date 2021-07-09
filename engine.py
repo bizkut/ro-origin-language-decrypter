@@ -1,9 +1,6 @@
 # coding=utf-8
-
-
-class ROOLangPatcher:
-    def __init__(self, path: str) -> None:
-        self.pos = 1
+import hashlib
+import os
 
 
 def database_read_len(content: bytearray, payload: dict) -> int:
@@ -110,3 +107,35 @@ def database_build_up(blob_dict: dict) -> bytearray:
 
     # return container
     return container
+
+
+def patch_file_list(file_list_path: str, robyte_path: str):
+	robyte_base_name = os.path.basename(robyte_path)
+	robyte_sha1 = ""
+	robyte_file_size = 0
+
+	# Open *.robyte to get file size and sha1
+	with open(robyte_path, "rb") as fh:
+		robyte_content = fh.read()
+		robyte_sha1 = hashlib.sha1(robyte_content).hexdigest()
+		robyte_file_size = len(robyte_content)
+
+	# Open __file__list__ for patching
+	with open(file_list_path, "r+b") as fh:
+		content = fh.read()
+		pos = content.find(str.encode(robyte_base_name))
+		if pos > -1:
+			# go to offset
+			fh.seek(pos)
+
+			# start patching
+			container = bytearray()
+			container.extend(robyte_base_name.encode("utf-8"))
+			container.extend(robyte_file_size.to_bytes(8, 'little'))
+			container.extend(b"\x28")
+			container.extend(robyte_sha1.encode("utf-8"))
+
+			# write back the changes
+			fh.write(container)
+
+	print("[*] Done patching!")
